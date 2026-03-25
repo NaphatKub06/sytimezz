@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SytimeZz | Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Prompt:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #ffffff 0%, #ffe6e6 50%, #ffcccc 100%);
+            --card-bg: rgba(255, 255, 255, 0.65);
+            --card-border: rgba(255, 255, 255, 0.8);
+            --text-main: #4a4a4a;
+            --text-hover: #ff4d4d;
+            --shadow-color: rgba(255, 138, 138, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Prompt', sans-serif;
+            background: linear-gradient(135deg, #ffffff 0%, #ffe6e6 50%, #ffcccc 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            overflow-x: hidden; /* ซ่อน scrollbar แนวนอน */
+        }
+
+        /* ตั้งค่าพื้นหลัง Particle */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0; /* ให้อยู่หลังสุด */
+        }
+
+        .container {
+            max-width: 500px;
+            width: 90%;
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1; /* ให้อยู่หน้า Particle */
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            /* เพิ่ม margin ให้เลื่อนดูปุ่มล่างๆ ได้ในจอมือถือ */
+            margin: 40px 0; 
+        }
+
+        .profile-pic {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 10px 25px var(--shadow-color);
+            margin-bottom: 20px;
+            transition: transform 0.5s ease;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        /* ปรับแต่งจุดที่ตัวหนังสือพิมพ์ดีดจะขึ้น */
+        p.bio {
+            font-size: 16px;
+            color: #ff4d4d;
+            font-weight: 600;
+            margin-bottom: 30px;
+            height: 24px;
+        }
+
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .link-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .link-card i {
+            margin-right: 12px;
+            font-size: 22px;
+            transition: color 0.3s ease;
+        }
+
+        .link-card:hover {
+            transform: translateY(-5px);
+            background: white;
+            box-shadow: 0 15px 30px var(--shadow-color);
+            color: var(--text-hover);
+        }
+
+        .link-card:hover i {
+            color: var(--text-hover);
+        }
+
+        /* สีไอคอนเฉพาะตอน Hover */
+        .link-card.discord:hover i { color: #5865F2; }
+        .link-card.youtube:hover i { color: #FF0000; }
+        .link-card.itchio:hover i { color: #FA5C5C; }
+        .link-card.naphathub:hover i { color: #007BFF; }
+        .link-card.tiktok:hover i { color: #000000; text-shadow: 2px 2px 0px #ff0050, -2px -2px 0px #00f2fe; }
+        .link-card.x-twitter:hover i { color: #000000; }
+        .link-card.twitch:hover i { color: #9146FF; }
+        .link-card.kothub:hover i { color: #ff4d4d; }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* ตั้งเวลาดีเลย์ให้ปุ่มเด้งเรียงกันลงมา */
+        .link-card:nth-child(1) { animation-delay: 0.2s; }
+        .link-card:nth-child(2) { animation-delay: 0.35s; }
+        .link-card:nth-child(3) { animation-delay: 0.5s; }
+        .link-card:nth-child(4) { animation-delay: 0.65s; }
+        .link-card:nth-child(5) { animation-delay: 0.8s; }
+        .link-card:nth-child(6) { animation-delay: 0.95s; }
+        .link-card:nth-child(7) { animation-delay: 1.1s; }
+        .link-card:nth-child(8) { animation-delay: 1.25s; }
+    </style>
+</head>
+<body>
+
+    <div id="particles-js"></div>
+
+    <div class="container">
+        <img src="icon.ico" alt="SytimeZz Profile" class="profile-pic" onerror="this.src='https://via.placeholder.com/130/ffcccc/ffffff?text=SZ'">
+        
+        <h1>SytimeZz</h1>
+        <p class="bio"><span id="typed-text"></span></p>
+
+        <div class="links-container">
+            <a href="https://discord.gg/VvUDNhx7cY" target="_blank" class="link-card discord">
+                <i class="fa-brands fa-discord"></i>
+                SytimeZz Community
+            </a>
+
+            <a href="https://naphatkub06.github.io" target="_blank" class="link-card naphathub">
+                <i class="fa-solid fa-code"></i>
+                NaphatHub
+            </a>
+
+            <a href="https://sytimezz.itch.io/" target="_blank" class="link-card itchio">
+                <i class="fa-brands fa-itch-io"></i>
+                My Games on itch.io
+            </a>
+
+            <a href="https://www.youtube.com/@SytimeZz" target="_blank" class="link-card youtube">
+                <i class="fa-brands fa-youtube"></i>
+                YouTube Channel
+            </a>
+
+            <a href="https://www.tiktok.com/@sytimezz_dub" target="_blank" class="link-card tiktok">
+                <i class="fa-brands fa-tiktok"></i>
+                TikTok
+            </a>
+
+            <a href="https://x.com/sytimezz" target="_blank" class="link-card x-twitter">
+                <i class="fa-brands fa-x-twitter"></i>
+                X (Twitter)
+            </a>
+
+            <a href="https://www.twitch.tv/sytimezz" target="_blank" class="link-card twitch">
+                <i class="fa-brands fa-twitch"></i>
+                Twitch
+            </a>
+
+            <a href="https://drive.google.com/uc?export=download&id=1tiRwF-_rC3qspMXitDJ0KBvMRgJP86Zq" download class="link-card kothub">
+                <i class="fa-solid fa-download"></i>
+                Download KotHub
+            </a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+    <script>
+        // 1. ตั้งค่า Typed.js (ลูกเล่นพิมพ์ดีด)
+        var typed = new Typed('#typed-text', {
+            strings: ['Game Developer', 'Web Creator', 'Video Editor'],
+            typeSpeed: 60,
+            backSpeed: 40,
+            backDelay: 1500,
+            loop: true,
+            showCursor: true,
+            cursorChar: '|'
+        });
+
+        // 2. ตั้งค่า Particles.js (พื้นหลัง)
+        particlesJS('particles-js', {
+            "particles": {
+                "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#ff8a8a" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5, "random": false },
+                "size": { "value": 3, "random": true },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffb3b3",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "grab" },
+                    "onclick": { "enable": true, "mode": "push" },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": { "distance": 140, "line_linked": { "opacity": 1 } },
+                    "push": { "particles_nb": 4 }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
+</body>
+</html>
