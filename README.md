@@ -1,4 +1,4 @@
-# sytimezz.github.io
+# SytimeZz Website
 My web kub eiei
 
-sytimezz.github.io
+(https://naphatkub06.github.io/sytimezz/)
