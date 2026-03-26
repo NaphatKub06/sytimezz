@@ -198,6 +198,55 @@
         .content-card:nth-child(6) { animation-delay: 0.5s; }
         .content-card:nth-child(7) { animation-delay: 0.6s; }
 
+/* กล่องสถานะคอมมิชชั่น */
+        .status-box {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px var(--shadow-color);
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .status-box h2 {
+            font-size: 16px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        /* ป้ายสถานะ */
+        .status-badge-big {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: 22px;
+            font-weight: 600;
+            color: white;
+            transition: transform 0.3s;
+        }
+
+        .status-badge-big:hover {
+            transform: scale(1.05);
+        }
+
+        /* สีตอนเปิดรับคิว (เขียว) */
+        .is-open {
+            background: linear-gradient(135deg, #00b09b, #96c93d);
+            box-shadow: 0 8px 20px rgba(150, 201, 61, 0.4);
+        }
+
+        /* สีตอนปิดรับคิว (แดง/เทา) */
+        .is-closed {
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            box-shadow: 0 8px 20px rgba(255, 75, 43, 0.4);
+        }
+
     </style>
 </head>
 <body>
@@ -208,8 +257,20 @@
         </a>
 
         <div class="header-section">
-            <h1>คอมมิชชั่น ตัดต่อคลิป! ✨</h1>
-            <div class="status-badge">รอบทดลอง (0/2) คิวว่าง</div>
+            <h1>✨ คอมมิชชั่น ตัดต่อคลิป! ✨</h1>
+            <div class="status-badge">รอบทดลอง</div>
+        </div>
+
+    <div class="status-box">
+            <h2>สถานะคิวงานปัจจุบัน</h2>
+            
+            <div class="status-badge-big is-closed">
+                <i class="fa-solid fa-door-closed"></i> ปิดรับคอมมิชชั่น (CLOSED)
+            </div>
+            
+            <p style="margin-top: 15px; font-size: 14px; color: var(--text-muted);">
+                คิวว่างปัจจุบัน: <span class="highlight">0/2 คิว</span>
+            </p>
         </div>
 
         <div class="content-card">
