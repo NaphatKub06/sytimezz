@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SytimeZz | Video Editing Commission</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Prompt:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="/icon.ico">
+
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #ffffff 0%, #ffe6e6 50%, #ffcccc 100%);
+            --card-bg: rgba(255, 255, 255, 0.7);
+            --card-border: rgba(255, 255, 255, 0.9);
+            --text-main: #333333;
+            --text-muted: #666666;
+            --accent-color: #ff4d4d;
+            --accent-hover: #e60000;
+            --shadow-color: rgba(255, 138, 138, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Prompt', 'Poppins', sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* ปุ่มกลับหน้าหลัก */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+
+        .back-btn:hover {
+            transform: translateX(-5px);
+            color: var(--accent-hover);
+        }
+
+        /* ส่วนหัว */
+        .header-section {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .header-section h1 {
+            font-size: 32px;
+            color: #222;
+            margin-bottom: 10px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(255, 77, 77, 0.3);
+        }
+
+        /* กล่องเนื้อหาแต่ละส่วน */
+        .content-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px var(--shadow-color);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s forwards;
+        }
+
+        .content-card h2 {
+            font-size: 22px;
+            color: var(--accent-color);
+            border-bottom: 2px dashed #ffcccc;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        ul, ol {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .highlight {
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        /* ส่วนราคา */
+        .price-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .price-item {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .price-item h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #222;
+        }
+
+        /* คอนเทนเนอร์วิดีโอ */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* อัตราส่วน 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* ปุ่มติดต่อ */
+        .contact-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: linear-gradient(135deg, #ff4d4d, #ff6666);
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 77, 77, 0.4);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 77, 77, 0.6);
+        }
+
+        /* อนิเมชั่น */
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* หน่วงเวลาให้การ์ดค่อยๆ เด้งทีละอัน */
+        .content-card:nth-child(2) { animation-delay: 0.1s; }
+        .content-card:nth-child(3) { animation-delay: 0.2s; }
+        .content-card:nth-child(4) { animation-delay: 0.3s; }
+        .content-card:nth-child(5) { animation-delay: 0.4s; }
+        .content-card:nth-child(6) { animation-delay: 0.5s; }
+        .content-card:nth-child(7) { animation-delay: 0.6s; }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <i class="fa-solid fa-arrow-left"></i> กลับหน้าหลัก
+        </a>
+
+        <div class="header-section">
+            <h1>คอมมิชชั่น ตัดต่อคลิป! ✨</h1>
+            <div class="status-badge">รอบทดลอง (0/2) คิวว่าง</div>
+        </div>
+
+        <div class="content-card">
+            <h2><i class="fa-solid fa-circle-exclamation"></i> โปรดอ่านรายละเอียดทั้งหมดก่อนสั่ง!!</h2>
+            <ol>
+                <li>ทางเราใช้แอป/โปรแกรม <span class="highlight">Capcut เวอร์ชั่นฟรี (ไม่ใช่ Pro)</span> ในการทำงาน บางเอฟเฟคอาจจะไม่ได้ตามที่ต้องการ</li>
+                <li>คุณภาพคลิปหลังจากตัดเสร็จ อาจจะมีความชัดที่ Drop บ้าง (เฉพาะงานที่เป็น PV) เรื่องนี้ต้องขออภัยล่วงหน้าเลยครับ เพราะทางผมไม่แน่ใจเหมือนกันว่าเป็นที่อะไร แต่ผมจะพยายามทำให้ดีที่สุดครับ</li>
+                <li>เรื่องระยะเวลาในการตัดต่อ ใช้เวลาประมาณ <span class="highlight">2-4 สัปดาห์ ต่อคลิป/คิว</span> หรืออาจจะไวกว่านั้น</li>
+                <li>หากรู้สึกว่างานช้าหรือยังไม่ได้รับสามารถทักมาไดัตลอดเลยครับ แชตอาจจะตกไปบ้าง</li>
+                <li>เวลาเริ่มทำงาน <span class="highlight">10:00 น. - 20:00 น.</span></li>
+                <li>รบกวนไม่สั่งเล่นนะครับ</li>
+            </ol>
+        </div>
+
+        <div class="content-card">
+            <h2><i class="fa-solid fa-list-check"></i> ขั้นตอนการสั่ง คมช.</h2>
+            <ol>
+                <li>หากต้องการจะสั่งคมช. ให้ทักในเฟส (หากทักไม่ได้ให้เม้นบอกไว้เดี๋ยวผมทักไปครับ)</li>
+                <li>ทางผมจะเช็คให้ว่า มีกี่คิว คิวเต็มไหม ถ้าคิวเหลือ สามารถสั่งงานได้</li>
+                <li><span class="highlight">จ่ายก่อนแล้วถึงจะบรีฟงานได้นะครับ</span> แล้วทางผมจะคอยมาอัปเดตให้เรื่อยๆ ว่าถึงคิวแล้วหรืองานถึงไหนแล้ว</li>
+                <li>หากงานเสร็จแล้ว ทางผมจะส่งเป็นตย.คลิปคร่าวๆให้ดูก่อน เพื่อให้เช็คว่าต้องการแก้จุดไหนไหม หากไม่มี ทางผมจะส่งไฟล์ mp4 ให้ผ่าน Google Drive</li>
+            </ol>
+        </div>
+
+        <div class="content-card">
+            <h2><i class="fa-solid fa-comment-dots"></i> สิ่งที่ต้องบรีฟมา!!</h2>
+            <ol>
+                <li>แนวเพลงประกอบที่ต้องการ</li>
+                <li>บอกรายละเอียดว่าอยากให้เริ่มที่ฉากไหน ในคลิปต้องมีอะไรประกอบบ้าง และตอนจบคลิปอยากให้เป็นยังไง หรือจะวาดเป็น Storyboard ก้างๆ ให้ผมก็ได้ พอเข้าใจได้อยู่คับ (ถ้าบอกแบบละเอียดได้ยิ่งดีเลย)</li>
+                <li>คลิปฟุตเทจต่างๆ (ถ้าวิดีโอเป็นไฟล์ mp4 จะขอบคุณมากครับ 🥹🙇🏻‍♂️)</li>
+            </ol>
+            <p style="margin-top: 15px; padding: 10px; background: #fff5f5; border-radius: 8px; border-left: 4px solid #ff4d4d;">
+                💡 <strong>หมายเหตุ:</strong> งานสามารถแก้ได้ 5 ครั้ง ถ้าเกินจากนั้น บวกเพิ่มครั้งละ 100 บาท
+            </p>
+        </div>
+
+        <div class="content-card">
+            <h2><i class="fa-solid fa-tags"></i> ราคางานต่างๆ!!</h2>
+            <ul class="price-list">
+                <li class="price-item">
+                    <h3>1. คลิปสั้น (TikTok, Reels, Youtube Shorts)</h3>
+                    <p>ความยาว 30 วินาที - 3 นาที : <span class="highlight">500 บาท</span></p>
+                </li>
+                <li class="price-item">
+                    <h3>2. คลิปปกติ (Vlog, เล่นเกม)</h3>
+                    <p>ความยาว 3 - 5 นาที : <span class="highlight">700 บาท</span></p>
+                    <p>ความยาว 5 - 10 นาที : <span class="highlight">1,000 บาท</span></p>
+                    <p>ความยาวมากกว่า 10 นาที : <span class="highlight">1,000 + นาทีละ 100 บาท</span> (เช่น 12 นาที = 1,200 บาท)</p>
+                </li>
+                <li class="price-item">
+                    <h3>3. PV</h3>
+                    <p>Short Video / TV Size : <span class="highlight">700 บาท</span></p>
+                    <p>Lyrics Video : <span class="highlight">500 บาท</span></p>
+                    <p>Full Video : <span class="highlight">1,000 บาท</span></p>
+                </li>
+                <li class="price-item">
+                    <h3>4. บริการเพิ่มเติม</h3>
+                    <p>ปกคลิป (Thumbnail) : <span class="highlight">+200 บาท</span> (สั่งแยกได้)</p>
+                    <p>ซับไตเติ้ลทุกคำ (Full Subtitles) : <span class="highlight">+200 บาท</span></p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content-card">
+            <h2><i class="fa-solid fa-ban"></i> งานที่ไม่รับ</h2>
+            <ul>
+                <li>งานเร่ง / งานด่วน</li>
+                <li>งานที่มีความจุคลิปเยอะเกินไป (50 GB ขึ้นไป)</li>
+                <li>งานที่ต้องมีการอนิเมท, อนิเมชั่นภาพ, Live2D</li>
+                <li>งาน 3D</li>
+            </ul>
+        </div>
+
+        <div class="content-card">
+            <h2><i class="fa-solid fa-video"></i> ตัวอย่างผลงาน</h2>
+            
+            <h3 style="margin-bottom: 10px; font-size: 16px;">🎬 ผลงาน PV (Capcut)</h3>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/videoseries?list=PLWA9RdmkVpzA7RzdOjVvyAgTcWzawNiz1" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+
+            <h3 style="margin-bottom: 10px; font-size: 16px;">🎞️ ผลงาน ตัดต่อทั่วไป</h3>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/videoseries?list=PLWA9RdmkVpzD4lRwGsCowcrbUyFPVK9y2" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <a href="https://m.me/SytimeZz" target="_blank" class="contact-btn">
+            <i class="fa-brands fa-facebook-messenger"></i> ทักแชทเพื่อสั่งงาน (Facebook)
+        </a>
+
+    </div>
+
+</body>
+</html>
